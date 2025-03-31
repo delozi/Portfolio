@@ -1,0 +1,98 @@
+:root {
+  --admin-bg-color: #09090b;
+  --admin-secondary-bg-color: #18181b;
+  --admin-accent-color: #EAB308;
+  --admin-secondary-accent-color: #FACC15;
+  --admin-tertiary-accent-color: #CA8A04;
+  --admin-gradient-start: #EAB308;
+  --admin-gradient-end: #CA8A04;
+}
+
+/* Custom styling for the Payload admin panel */
+html {
+  background-color: var(--admin-bg-color);
+}
+
+nav {
+  background: linear-gradient(to bottom, var(--admin-gradient-start), var(--admin-gradient-end));
+}
+
+#app-header {
+  background-color: var(--admin-secondary-bg-color);
+}
+
+.btn-primary {
+  background-color: var(--admin-accent-color) !important;
+  border-color: var(--admin-accent-color) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--admin-secondary-accent-color) !important;
+  border-color: var(--admin-secondary-accent-color) !important;
+}
+
+.card-btn {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.card-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--admin-bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--admin-accent-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--admin-secondary-accent-color);
+}
+
+/* Enhance form fields */
+input, textarea, select {
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  transition: all 0.2s !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--admin-accent-color) !important;
+  box-shadow: 0 0 0 3px rgba(138, 133, 255, 0.25) !important;
+}
+
+/* Style dashboard cards */
+.dashboard-card {
+  border-radius: 16px !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Add custom typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+body {
+  font-family: 'Inter', sans-serif !important;
+  line-height: 1.7 !important;
+}
+
+code, pre {
+  font-family: 'JetBrains Mono', monospace !important;
+} 
