@@ -1,6 +1,4 @@
-// For newer Payload versions (check documentation for exact import)
-import { createPayloadClient } from 'payload/dist/client'
-// Or potentially:
+// For newer Payload versions
 import { withPayload } from '@payloadcms/next-payload'
 import path from 'path'
 
@@ -12,7 +10,9 @@ const nextConfig = {
 }
 
 export default withPayload(nextConfig, {
-  // Point to your Payload config
+  // Make sure this matches your environment variable
   configPath: path.resolve(process.cwd(), "./payload.config.ts"),
-  // Other options as needed
+  
+  // Other options
+  devBundleServerPackages: false
 })
