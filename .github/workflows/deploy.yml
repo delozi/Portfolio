@@ -34,7 +34,7 @@ jobs:
         run: npm install -D tailwindcss postcss autoprefixer sass cross-env @payloadcms/next-payload
       
       - name: Install Payload dependencies
-        run: npm install payload@latest @payloadcms/next-payload@latest @payloadcms/db-mongodb@latest @payloadcms/richtext-slate@latest
+        run: npm install @payloadcms/db-mongodb@latest @payloadcms/richtext-slate@latest
 
       - name: Build
         env:
