@@ -34,8 +34,8 @@ jobs:
         run: npm install -D tailwindcss postcss autoprefixer sass cross-env @payloadcms/next-payload
       
       - name: Install Payload dependencies
-        run: npm install @payloadcms/next-payload payload @payloadcms/bundler-webpack @payloadcms/db-mongodb @payloadcms/richtext-slate  
-     
+        run: npm install payload@latest @payloadcms/next-payload@latest @payloadcms/db-mongodb@latest @payloadcms/richtext-slate@latest
+
       - name: Build
         env:
           PAYLOAD_CONFIG_PATH: ./payload.config.ts
