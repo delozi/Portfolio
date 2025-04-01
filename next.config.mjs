@@ -1,5 +1,5 @@
 // For newer Payload versions
-import { withPayload } from '@payloadcms/next-payload'
+import { withPayload } from '@payloadcms/next'
 import path from 'path'
 
 /** @type {import('next').NextConfig} */
