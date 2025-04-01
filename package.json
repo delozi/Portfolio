@@ -1,0 +1,61 @@
+{
+  "name": "portfolio-cms",
+  "version": "1.0.0",
+  "description": "Portfolio website built with Payload CMS",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@payloadcms/db-mongodb": "latest",
+    "@payloadcms/next": "latest",
+    "@payloadcms/payload-cloud": "latest",
+    "@payloadcms/richtext-lexical": "latest",
+    "cross-env": "^7.0.3",
+    "framer-motion": "^11.18.2",
+    "graphql": "^16.8.1",
+    "lucide-react": "^0.369.0",
+    "next": "15.2.3",
+    "payload": "latest",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-icons": "^5.5.0",
+    "react-scroll": "^1.9.3",
+    "sharp": "0.32.6",
+    "swiper": "^11.2.6"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "^22.5.4",
+    "@types/react": "19.0.12",
+    "@types/react-dom": "19.0.4",
+    "@types/react-scroll": "^1.8.10",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "15.2.3",
+    "postcss": "^8.5.3",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0",
+    "pnpm": "^9"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
+  }
+}

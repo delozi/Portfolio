@@ -1,0 +1,282 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background-primary: 9 9 11;   /* #09090b */
+    --background-secondary: 24 24 27; /* #18181b */
+    --background-tertiary: 39 39 42; /* #27272a */
+    
+    --accent-primary: 234 179 8;    /* #EAB308 - Bright Gold */
+    --accent-secondary: 202 138 4;   /* #CA8A04 - Medium Gold */
+    --accent-tertiary: 161 98 7;     /* #A16207 - Dark Gold */
+    
+    --gradient-start: 234 179 8;    /* #EAB308 - Bright Gold */
+    --gradient-end: 202 138 4;      /* #CA8A04 - Medium Gold */
+    
+    --text-primary: 248 250 252;     /* #f8fafc */
+    --text-secondary: 203 213 225;   /* #cbd5e1 */
+    --text-muted: 100 116 139;       /* #64748b */
+  }
+
+  /* Apply dark mode by default */
+  html {
+    @apply bg-background-primary text-text-primary;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply antialiased;
+    /* Use subtle grain texture for background */
+    background-image: url('/noise.png');
+    background-repeat: repeat;
+    background-size: 200px;
+    background-blend-mode: overlay;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: thin;     /* Firefox */
+  }
+
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  body::-webkit-scrollbar-track {
+    @apply bg-background-primary;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    @apply bg-accent-primary rounded-full;
+  }
+
+  /* Base typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold text-text-primary;
+  }
+
+  p, ul, ol {
+    @apply font-sans text-text-secondary leading-relaxed;
+  }
+
+  a {
+    @apply text-accent-primary hover:text-accent-secondary transition-colors duration-200;
+  }
+
+  code {
+    @apply font-mono text-accent-tertiary;
+  }
+}
+
+@layer components {
+  /* Glass effect for cards */
+  .glass-card {
+    @apply bg-background-secondary/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-glass;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply text-transparent bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text;
+  }
+  
+  /* Primary button */
+  .btn-primary {
+    @apply px-6 py-2 rounded-lg bg-accent-primary text-white font-medium 
+      transition-all duration-300 hover:bg-yellow-600 hover:text-white
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  /* Secondary button */
+  .btn-secondary {
+    @apply px-6 py-2 rounded-lg bg-background-secondary text-text-primary font-medium 
+      border border-white/10 transition-all duration-300
+      hover:bg-yellow-600 hover:text-white hover:border-transparent
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Small secondary button */
+  .btn-secondary-sm {
+    @apply bg-background-secondary hover:bg-background-tertiary text-text-primary border border-white/10 font-medium rounded-lg px-4 py-2 transition-all duration-200;
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold mb-4 font-display;
+  }
+
+  /* Card hover effect */
+  .hover-card {
+    @apply transition-all duration-300 hover:translate-y-[-8px] hover:shadow-lg;
+  }
+
+  /* Card hover effect with gold glow */
+  .hover-card:hover {
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.5), 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-color: rgba(234, 179, 8, 0.4);
+  }
+  
+  /* Grayscale filter for icons */
+  .grayscale-icon {
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+  
+  .grayscale-icon:hover {
+    filter: grayscale(0%);
+  }
+
+  /* Scroll margin for section navigation */
+  .scroll-mt-24 {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Remove background from nyan cat container */
+  .nyan-cat-container {
+    background: none !important;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translateY(0px) translateX(0px);
+  }
+  33% {
+    transform: translateY(-15px) translateX(5px);
+  }
+  66% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(1px);
+    box-shadow: 0 0 10px rgba(234, 179, 8, 0.4), 0 0 20px rgba(234, 179, 8, 0.2);
+  }
+  50% {
+    opacity: 1;
+    filter: blur(0);
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.6), 0 0 40px rgba(234, 179, 8, 0.3);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes falling-star {
+  0% {
+    transform: translateY(-10px) rotate(45deg) scale(0.8);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 20px)) rotate(45deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+@keyframes nyan-cat {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 10s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-in-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+.animate-falling-star {
+  animation: falling-star 5s linear infinite;
+}
+
+.animate-nyan-cat {
+  animation: nyan-cat 0.6s ease-in-out infinite;
+}
+
+/* Typography spacing */
+h1 {
+  @apply text-4xl md:text-5xl lg:text-6xl mb-6;
+}
+
+h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl mb-5;
+}
+
+h3 {
+  @apply text-2xl md:text-3xl mb-4;
+}
+
+h4 {
+  @apply text-xl md:text-2xl mb-3;
+}
+
+/* Better focus styles for accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-accent-primary ring-offset-2 ring-offset-background-primary;
+} 
