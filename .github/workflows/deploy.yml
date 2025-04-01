@@ -31,8 +31,11 @@ jobs:
         run: npm ci
         
       - name: Install required packages
-        run: npm install -D tailwindcss postcss autoprefixer sass cross-env
-        
+        run: npm install -D tailwindcss postcss autoprefixer sass cross-env @payloadcms/next-payload
+      
+      - name: Install Payload dependencies
+        run: npm install @payloadcms/next-payload payload @payloadcms/bundler-webpack @payloadcms/db-mongodb @payloadcms/richtext-slate  
+     
       - name: Build
         env:
           PAYLOAD_CONFIG_PATH: ./payload.config.ts
@@ -40,7 +43,7 @@ jobs:
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
