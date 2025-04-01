@@ -6,11 +6,6 @@
       "use": "@vercel/next"
     }
   ],
-  "env": {
-    "MONGODB_URL": "@mongodb_url",
-    "PAYLOAD_SECRET": "@payload_secret",
-    "NEXT_PUBLIC_SERVER_URL": "@next_public_server_url"
-  },
   "build": {
     "env": {
       "NODE_ENV": "production"
