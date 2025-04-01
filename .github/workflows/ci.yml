@@ -35,9 +35,6 @@ jobs:
 
       - name: Clean install dependencies
         run: |
-          npm cache clean --force
-          rm -rf node_modules
-          rm -rf .next
           npm ci
 
       - name: Generate Payload types
