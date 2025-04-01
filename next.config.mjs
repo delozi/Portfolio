@@ -9,12 +9,22 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: 'export',
   images: {
-    unoptimized: true,
+    domains: ['localhost'],
+    unoptimized: process.env.NODE_ENV === 'development'
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/Portfolio' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/Portfolio/' : ''
+  // Handle API routes in development and production
+  rewrites: async () => {
+    if (process.env.NODE_ENV === 'development') {
+      return [
+        {
+          source: '/api/:path*',
+          destination: 'http://localhost:3000/api/:path*',
+        },
+      ]
+    }
+    return []
+  }
 }
 
 export default withPayload(nextConfig, {
