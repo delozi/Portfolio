@@ -1,13 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Send } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 
 // Initialize EmailJS with your public key
-useEffect(() => {
-  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '')
-}, [])
+emailjs.init("QXyABccD4HidQAyBw")
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -17,41 +15,56 @@ export default function ContactForm() {
     message: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submissionStatus, setSubmissionStatus] = useState<string | null>(null)
+  const [submitStatus, setSubmitStatus] = useState<{
+    success?: boolean
+    message?: string
+  }>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setSubmissionStatus(null)
-
+    
     try {
-      await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        "service_3nttcfr", 
+        "template_qgw3rny",
         {
           from_name: formData.name,
           from_email: formData.email,
           subject: formData.subject,
           message: formData.message,
-          to_email: 'louisdelozier@gmail.com'
+          to_email: "louisdelozier@gmail.com",
         }
       )
       
-      setSubmissionStatus('success')
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      })
+      if (result.status === 200) {
+        setSubmitStatus({
+          success: true,
+          message: 'Message sent successfully! I\'ll get back to you soon.',
+        })
+        
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        })
+      } else {
+        throw new Error('Failed to send message')
+      }
     } catch (error) {
-      console.error('Error sending email:', error)
-      setSubmissionStatus('error')
+      setSubmitStatus({
+        success: false,
+        message: 'Something went wrong. Please try again.',
+      })
+      console.error('Contact form error:', error)
     } finally {
       setIsSubmitting(false)
     }
@@ -61,17 +74,15 @@ export default function ContactForm() {
     <div className="glass-card p-8 md:p-10">
       <h3 className="text-2xl font-display font-bold mb-6">Get In Touch</h3>
       
-      {submissionStatus === 'success' && (
+      {submitStatus.success ? (
         <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 mb-6">
-          <p className="text-green-400">Message sent successfully! I'll get back to you soon.</p>
+          <p className="text-green-400">{submitStatus.message}</p>
         </div>
-      )}
-      
-      {submissionStatus === 'error' && (
+      ) : submitStatus.message ? (
         <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 mb-6">
-          <p className="text-red-400">Something went wrong. Please try again.</p>
+          <p className="text-red-400">{submitStatus.message}</p>
         </div>
-      )}
+      ) : null}
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
