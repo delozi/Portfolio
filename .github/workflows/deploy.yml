@@ -36,6 +36,9 @@ jobs:
       - name: Install cross-env
         run: npm install -g cross-env
       
+      - name: Install Next.js globally
+        run: npm install -g next
+      
       - name: Build
         env:
           PAYLOAD_CONFIG_PATH: ./payload.config.ts
