@@ -33,8 +33,12 @@ jobs:
           node-version: '20.9.0'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Clean install dependencies
+        run: |
+          npm cache clean --force
+          rm -rf node_modules
+          rm -rf .next
+          npm ci
 
       - name: Generate Payload types
         run: npm run generate:types
