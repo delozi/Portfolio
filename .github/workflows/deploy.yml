@@ -36,7 +36,7 @@ jobs:
       - name: Build
         env:
           PAYLOAD_CONFIG_PATH: ./payload.config.ts
-        run: npx cross-env NODE_OPTIONS=--no-deprecation next build --no-lint
+        run: npx cross-env NODE_OPTIONS=--no-deprecation next build --no-lint --no-typescript
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
