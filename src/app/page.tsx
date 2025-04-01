@@ -8,6 +8,7 @@ import SchoolLogo from './components/SchoolLogo'
 import CertificateIcon from './components/CertificateIcon'
 import FixedNavArrow from './components/FixedNavArrow'
 import { HeroBackground, ProjectsBackground, SkillsBackground, BlogBackground, ContactBackground, TriangleBackground } from './components/AnimatedBackgrounds'
+import Link from 'next/link'
 
 // Lazy load components that are below the fold
 const SwiperProjectCarousel = dynamic(() => import('./components/SwiperProjectCarousel'), {
@@ -351,9 +352,9 @@ export default function Home() {
             </div>
 
             <div className="mt-20 text-center">
-              <a href="/blog" className="btn-primary">
+              <Link href="/blog" className="btn-primary">
                 Read All Articles
-              </a>
+              </Link>
             </div>
           </div>
         </section>
