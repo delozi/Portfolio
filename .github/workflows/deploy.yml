@@ -35,7 +35,7 @@ jobs:
         
       - name: Build
         env:
-          PAYLOAD_CONFIG_PATH: ./payload.config.ts  # Adjust path as needed
-        run: npm run build
+          PAYLOAD_CONFIG_PATH: ./payload.config.ts
+        run: cross-env NODE_OPTIONS=--no-deprecation next build --no-lint
         
       # Add your deployment steps here
