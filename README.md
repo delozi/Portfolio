@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Portfolio Website with Payload CMS
 
 A modern portfolio website built with Payload CMS, Next.js, and TypeScript. Features a dark theme design and static site generation for GitHub Pages deployment.
