@@ -1,5 +1,5 @@
-import { withPayload } from '@payloadcms/next/withPayload'
-import path from 'path'
+const { withPayload } = require('@payloadcms/next/withPayload')
+const path = require('path')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -27,10 +27,10 @@ const nextConfig = {
   }
 }
 
-export default withPayload(nextConfig, {
+module.exports = withPayload(nextConfig, {
   // Make sure this matches your environment variable
   configPath: path.resolve(process.cwd(), "./payload.config.ts"),
   
   // Other options
   devBundleServerPackages: false
-})
+}) 
