@@ -4,6 +4,7 @@ import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import FixedNavArrow from './components/FixedNavArrow'
+import { AnimationProvider } from './context/AnimationContext'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -65,10 +66,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable} ${jetbrainsMono.variable} dark`}>
       <body className="min-h-screen bg-background-primary">
-        <Header />
-        <FixedNavArrow />
-        {children}
-        <Footer />
+        <AnimationProvider>
+          <Header />
+          <FixedNavArrow />
+          {children}
+          <Footer />
+        </AnimationProvider>
       </body>
     </html>
   )

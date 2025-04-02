@@ -217,7 +217,7 @@ export default function Hero() {
               <Github className="h-5 w-5 md:h-6 md:w-6" />
             </a>
             <a
-              href="https://linkedin.com/in/louisdelozier"
+              href="https://linkedin.com/in/louis-delozier"
               target="_blank"
               rel="noopener noreferrer"
               className="text-text-secondary hover:text-accent-primary transition-colors"

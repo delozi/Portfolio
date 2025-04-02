@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Menu, X, FolderKanban, BookOpen, Mail } from 'lucide-react'
+import { Menu, X, FolderKanban, BookOpen, Mail, Sparkles } from 'lucide-react'
+import { useAnimation } from '../context/AnimationContext'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const { animationsEnabled, toggleAnimations } = useAnimation()
 
   // Handle scroll effect
   useEffect(() => {
@@ -87,6 +89,15 @@ export default function Header() {
             <Mail className="h-5 w-5" />
             Contact
           </button>
+
+          {/* Animation Toggle Button */}
+          <button
+            onClick={toggleAnimations}
+            className={`transition-colors cursor-pointer flex items-center gap-2 ${animationsEnabled ? 'text-accent-primary' : 'text-text-primary/50'}`}
+            aria-label={animationsEnabled ? "Disable animations" : "Enable animations"}
+          >
+            <Sparkles className="h-5 w-5" />
+          </button>
         </nav>
         
         {/* Mobile Menu Toggle */}
@@ -130,6 +141,14 @@ export default function Header() {
               >
                 <Mail className="h-6 w-6" />
                 Contact
+              </button>
+              {/* Mobile Animation Toggle Button */}
+              <button
+                onClick={toggleAnimations}
+                className={`text-2xl font-medium transition-colors cursor-pointer bg-transparent border-none flex items-center gap-3 ${animationsEnabled ? 'text-accent-primary' : 'text-text-primary/50'}`}
+                aria-label={animationsEnabled ? "Disable animations" : "Enable animations"}
+              >
+                <Sparkles className="h-6 w-6" />
               </button>
             </nav>
           </div>

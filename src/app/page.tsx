@@ -75,50 +75,28 @@ const experienceData = [
     logo: '/Monogatari.png',
     location: 'United States',
     position: 'Software Engineer (Internship)',
-    period: 'August 2021-Present',
-    achievements: [
-      'Addressed slow e-commerce performance by building Next.js/Strapi platform for English/Spanish novels, reducing load times and improving mobile conversion rates by 28%.',
-      'Generated $250K+ in book sales by migrating to WordPress/Astra, enhancing platform flexibility and integrating with critical sales tools through cross-functional e-commerce solutions.',
-      'Resolved low international visibility by implementing multilingual SEO optimization, increasing organic traffic by 25% and achieving top 5 rankings for translated fiction.'
-    ]
+    period: 'August 2021-Present'
   },
   {
     company: 'Tyson Foods',
     logo: '/Tyson.png',
     location: 'United States',
     position: 'Mobile Applications Engineer (Internship)',
-    period: 'July 2020-July 2021',
-    achievements: [
-      'Developed React Native and Flutter mobile applications utilizing TypeScript/Dart with responsive UI/UX designs and RESTful API integrations for enterprise-scale deployment.',
-      'Saved Tyson $40K annually by creating a mobile component library, reducing code redundancy and development workload.',
-      'Improved design consistency by modeling 15+ UI components in Figma following Tyson design guidelines, ensuring brand alignment across mobile applications.',
-      'Engineered secure full-stack solutions with Redux, OAuth, Firebase, and SQL database integration.',
-      'Solved offline accessibility challenges by architecting cross-platform applications for iOS/Android with React Navigation, push notification services, and offline-first functionality, increasing user engagement by 20%.'
-    ]
+    period: 'July 2020-July 2021'
   },
   {
     company: 'Tyson Foods',
     logo: '/Tyson.png',
     location: 'United States',
     position: 'Ecommerce Analyst (Internship)',
-    period: 'August 2019-June 2020',
-    achievements: [
-      'Integrated e-commerce analytics platforms including Google Analytics, Bazaarvoice, and custom APIs, improving website uptime by 25% and enhancing customer engagement metrics.',
-      'Addressed legacy website code (Sitecore) limitations by migrating to Gatsby/Drupal, boosting SEO rankings 45% and sales 28%.',
-      'Tackled low search rankings by implementing SEO optimization strategies with content governance frameworks, improving organic rankings and driving 30% increased traffic conversion.'
-    ]
+    period: 'August 2019-June 2020'
   },
   {
     company: 'Tyson Foods',
     logo: '/Tyson.png',
     location: 'United States',
     position: 'Frontend Developer (Internship)',
-    period: 'June 2018-July 2019',
-    achievements: [
-      'Managed 12+ brand websites serving 5M+ monthly visitors, including Tyson.com, Jimmy Dean, BallPark, and Hillshire Farms.',
-      'Built accessible React/Gatsby webapps with GraphQL and Drupal CMS, achieving 98% WCAG compliance.',
-      'Saved Tyson $60K annually by creating a 25+ element component library, eliminating code redundancy across brand platforms.'
-    ]
+    period: 'June 2018-July 2019'
   }
 ]
 
@@ -232,7 +210,7 @@ export default function Home() {
                         key={`${job.position}-${index}`} 
                         className="glass-card p-6 sm:p-8 bg-background-secondary/50 border border-white/10 backdrop-blur-sm transition-all duration-300 hover:shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:scale-[1.02] hover:border-yellow-600/30"
                       >
-                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 mb-4">
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                           <div>
                             <h3 className="text-xl font-display font-semibold text-text-primary">{job.position}</h3>
                             <p className="text-accent-primary font-medium">
@@ -241,15 +219,6 @@ export default function Home() {
                           </div>
                           <span className="text-text-secondary text-sm whitespace-nowrap">{job.period}</span>
                         </div>
-                        
-                        <ul className="mt-4 space-y-2">
-                          {job.achievements.map((achievement, i) => (
-                            <li key={i} className="flex gap-2 text-text-secondary">
-                              <span className="text-accent-primary flex-shrink-0 mt-1.5">•</span>
-                              <span>{achievement}</span>
-                            </li>
-                          ))}
-                        </ul>
                       </div>
                     ))}
                   </div>
