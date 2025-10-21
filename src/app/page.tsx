@@ -38,11 +38,12 @@ export default function Home() {
 
       // Check collision with each icon
       const centerX = screenWidth / 2;
-      const iconWidth = 64;
-      const gap = 24; // Smaller gap (gap-6)
+      const isMobile = screenWidth < 640; // sm breakpoint
+      const iconWidth = isMobile ? 48 : 64; // 12 = 48px, 16 = 64px
+      const gap = isMobile ? 12 : 24; // gap-3 = 12px, gap-6 = 24px
       const totalWidth = (iconWidth + gap) * 5 - gap; // 5 total items
       const startX = centerX - totalWidth / 2;
-      const pacmanWidth = 96; // 24 * 4 (w-24 class)
+      const pacmanWidth = isMobile ? 64 : 96; // w-16 = 64px, w-24 = 96px
       const pacmanCenterX = pacmanX + pacmanWidth / 2;
 
       Object.entries(iconPositions).forEach(([icon, index]) => {
@@ -60,8 +61,8 @@ export default function Home() {
       });
 
       // Check collision with white dots (left and right of icons)
-      const dotSize = 28; // w-7 h-7 = 28px (icon size)
-      const dotGap = 24; // Same as icon gap (gap-6)
+      const dotSize = isMobile ? 20 : 28; // w-5 h-5 = 20px, w-7 h-7 = 28px
+      const dotGap = gap; // Same as icon gap
       const totalIconsWidth = (iconWidth + gap) * 5 - gap;
       const leftDotsCount = Math.floor((screenWidth / 2 - totalIconsWidth / 2 - gap) / (dotSize + dotGap));
       const rightDotsCount = leftDotsCount;
@@ -140,7 +141,7 @@ export default function Home() {
           className="fixed top-1/2 -translate-y-1/2 z-50 transition-none"
           style={{ left: `${pacmanPosition}px` }}
         >
-          <img src="/pacman.gif" alt="Pacman" className="w-24 h-24" />
+          <img src="/pacman.gif" alt="Pacman" className="w-16 h-16 sm:w-24 sm:h-24" />
         </div>
       )}
 
@@ -174,21 +175,23 @@ export default function Home() {
 
       {/* White Dots in the same row as icons, to the left and right */}
       {isPlaying && (() => {
-        const iconWidth = 64;
-        const gap = 24;
+        const screenWidth = window.innerWidth;
+        const isMobile = screenWidth < 640;
+        const iconWidth = isMobile ? 48 : 64;
+        const gap = isMobile ? 12 : 24;
         const totalIconsWidth = (iconWidth + gap) * 5 - gap; // 5 icons with gaps
-        const dotSize = 28;
-        const dotGap = 24; // Same as icon gap
-        const leftDotsCount = Math.floor((window.innerWidth / 2 - totalIconsWidth / 2 - gap) / (dotSize + dotGap));
+        const dotSize = isMobile ? 20 : 28;
+        const dotGap = gap; // Same as icon gap
+        const leftDotsCount = Math.floor((screenWidth / 2 - totalIconsWidth / 2 - gap) / (dotSize + dotGap));
 
         return (
-          <div className="fixed inset-0 flex items-center justify-center pointer-events-none">
-            <div className="flex gap-6 items-center">
+          <div className="fixed inset-0 flex items-center justify-center pointer-events-none scale-75 sm:scale-100">
+            <div className="flex gap-3 sm:gap-6 items-center">
               {/* Left side dots */}
               {Array.from({ length: leftDotsCount }).map((_, i) => (
                 <div
                   key={`left-${i}`}
-                  className={`w-7 h-7 bg-white rounded-full ${hiddenDots.includes(i) ? "opacity-0" : "opacity-100"}`}
+                  className={`w-5 h-5 sm:w-7 sm:h-7 bg-white rounded-full ${hiddenDots.includes(i) ? "opacity-0" : "opacity-100"}`}
                 />
               ))}
 
@@ -199,7 +202,7 @@ export default function Home() {
               {Array.from({ length: leftDotsCount }).map((_, i) => (
                 <div
                   key={`right-${i}`}
-                  className={`w-7 h-7 bg-white rounded-full ${hiddenDots.includes(leftDotsCount + i) ? "opacity-0" : "opacity-100"}`}
+                  className={`w-5 h-5 sm:w-7 sm:h-7 bg-white rounded-full ${hiddenDots.includes(leftDotsCount + i) ? "opacity-0" : "opacity-100"}`}
                 />
               ))}
             </div>
@@ -207,16 +210,16 @@ export default function Home() {
         );
       })()}
 
-      <div className="flex gap-6 items-center">
+      <div className="flex gap-3 sm:gap-6 items-center scale-75 sm:scale-100">
         {/* WeChat */}
         <div className={`group relative ${hiddenIcons.includes("wechat") ? "opacity-0" : "opacity-100"}`}>
-          <div className={`relative w-16 h-16 flex items-center justify-center bg-zinc-900 rounded-full border group-hover:shadow-lg group-hover:shadow-green-500/20 ${
+          <div className={`relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-zinc-900 rounded-full border group-hover:shadow-lg group-hover:shadow-green-500/20 ${
             isPlaying
               ? "border-green-400 shadow-lg shadow-green-500/20"
               : "border-zinc-800 group-hover:border-zinc-700"
           }`}>
               <svg
-                className={`w-7 h-7 transition-colors ${
+                className={`w-5 h-5 sm:w-7 sm:h-7 transition-colors ${
                   isPlaying ? "text-green-400" : "text-zinc-400 group-hover:text-green-400"
                 }`}
                 fill="currentColor"
@@ -247,14 +250,14 @@ export default function Home() {
           href="https://linkedin.com/in/louis-delozier"
           target="_blank"
           rel="noopener noreferrer"
-          className={`group relative w-16 h-16 flex items-center justify-center bg-zinc-900 rounded-full border hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 ${
+          className={`group relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-zinc-900 rounded-full border hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20 ${
             isPlaying
               ? "border-blue-400 shadow-lg shadow-blue-500/20"
               : "border-zinc-800 hover:border-zinc-700"
           } ${hiddenIcons.includes("linkedin") ? "opacity-0" : "opacity-100"}`}
         >
             <svg
-              className={`w-7 h-7 transition-colors ${
+              className={`w-5 h-5 sm:w-7 sm:h-7 transition-colors ${
                 isPlaying ? "text-blue-400" : "text-zinc-400 group-hover:text-blue-400"
               }`}
               fill="currentColor"
@@ -274,14 +277,14 @@ export default function Home() {
           href="https://instagram.com/louisdelozier"
           target="_blank"
           rel="noopener noreferrer"
-          className={`group relative w-16 h-16 flex items-center justify-center bg-zinc-900 rounded-full border hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20 ${
+          className={`group relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-zinc-900 rounded-full border hover:scale-110 hover:shadow-lg hover:shadow-pink-500/20 ${
             isPlaying
               ? "border-pink-400 shadow-lg shadow-pink-500/20"
               : "border-zinc-800 hover:border-zinc-700"
           } ${hiddenIcons.includes("instagram") ? "opacity-0" : "opacity-100"}`}
         >
             <svg
-              className={`w-7 h-7 transition-colors ${
+              className={`w-5 h-5 sm:w-7 sm:h-7 transition-colors ${
                 isPlaying ? "text-pink-400" : "text-zinc-400 group-hover:text-pink-400"
               }`}
               fill="currentColor"
@@ -308,14 +311,14 @@ export default function Home() {
           )}
 
           <div
-            className={`relative w-16 h-16 flex items-center justify-center bg-zinc-900 rounded-full border group-hover:shadow-lg group-hover:shadow-emerald-500/20 ${
+            className={`relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-zinc-900 rounded-full border group-hover:shadow-lg group-hover:shadow-emerald-500/20 ${
               isPlaying
                 ? "border-emerald-400 shadow-lg shadow-emerald-500/20"
                 : "border-zinc-800 group-hover:border-zinc-700"
             }`}
           >
             <svg
-              className={`w-7 h-7 transition-colors ${
+              className={`w-5 h-5 sm:w-7 sm:h-7 transition-colors ${
                 isPlaying ? "text-emerald-400" : "text-zinc-400 group-hover:text-emerald-400"
               }`}
               fill="currentColor"
@@ -337,9 +340,9 @@ export default function Home() {
         <button
           onClick={handlePlay}
           disabled={isPlaying}
-          className={`group relative w-16 h-16 flex items-center justify-center bg-zinc-900 rounded-full border border-zinc-800 hover:border-zinc-700 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/20 disabled:cursor-not-allowed ${hiddenIcons.includes("gamepad") ? "opacity-0" : "opacity-100"}`}
+          className={`group relative w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-zinc-900 rounded-full border border-zinc-800 hover:border-zinc-700 hover:scale-110 hover:shadow-lg hover:shadow-purple-500/20 disabled:cursor-not-allowed ${hiddenIcons.includes("gamepad") ? "opacity-0" : "opacity-100"}`}
         >
-          <TbDeviceGamepad2 className="w-9 h-9 text-zinc-400 group-hover:text-purple-400 transition-colors" />
+          <TbDeviceGamepad2 className="w-6 h-6 sm:w-9 sm:h-9 text-zinc-400 group-hover:text-purple-400 transition-colors" />
           <div className="absolute inset-0 rounded-full bg-purple-500/0 group-hover:bg-purple-500/10 transition-colors" />
         </button>
       </div>
